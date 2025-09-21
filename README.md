@@ -22,8 +22,8 @@ L’objectiu del projecte és aprendre el funcionament d’una aplicació web co
 ---
 
 ## Tecnologies utilitzades
-- **Frontend:** HTML, CSS, JavaScript (possibilitat d’usar React/Vue segons el nivell).
-- **Backend:** Java + Spring Boot / Node.js + Express (a decidir).
+- **Frontend:** HTML, CSS, JavaScript (React/Vue).
+- **Backend:** Node.js + Express.
 - **Base de dades:** MongoDB.
 - **Eines:** Git, GitHub, phpMyAdmin / Compass.
 
@@ -31,5 +31,3 @@ L’objectiu del projecte és aprendre el funcionament d’una aplicació web co
 
 ## Autors
 Guillem Fonts, estudiant de DAW 2.
-
-
