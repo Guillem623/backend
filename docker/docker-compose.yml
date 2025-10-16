@@ -1,0 +1,21 @@
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb_dev
+    restart: always
+    ports:
+      - "27019:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - mongo_network
+
+volumes:
+  mongodb_data:
+
+networks:
+  mongo_network:
+    driver: bridge
