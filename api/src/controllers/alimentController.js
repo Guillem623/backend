@@ -1,4 +1,4 @@
-const alimentService = require('../services/alimentsService');
+const alimentService = require('../services/alimentService');
 
 const crearAliment = async (req, res) => {
   try {

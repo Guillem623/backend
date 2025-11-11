@@ -1,4 +1,4 @@
-const usuariService = require('../services/usuarisService');
+const usuariService = require('../services/usuariService');
 
 // Crear usuari
 const crearUsuari = async (req, res) => {
