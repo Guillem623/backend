@@ -1,4 +1,4 @@
-const Aliment = require('../models/aliments');
+const Aliment = require('../model/aliment');
 
 // Crear un aliment nou
 const createAliment = async (dades) => {

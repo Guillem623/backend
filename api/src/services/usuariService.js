@@ -1,4 +1,4 @@
-const Usuari = require('../models/usuaris');
+const Usuari = require('../model/usuari');
 
 // Crear un nou usuari
 const createUsuari = async (dades) => {
