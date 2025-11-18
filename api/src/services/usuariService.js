@@ -38,7 +38,7 @@ const generarToken = (usuari) => {
 };
 
 // Registrar usuari
-exports.registrar = async (dades) => {
+const registrar = async (dades) => {
   const nouUsuari = new Usuari(dades);
   await nouUsuari.save();
 
@@ -49,7 +49,7 @@ exports.registrar = async (dades) => {
 };
 
 // Login usuari
-exports.login = async (correu, contrasenya) => {
+const login = async (correu, contrasenya) => {
   const usuari = await Usuari.findOne({ correu });
   if (!usuari) throw new Error("Aquest correu no està registrat");
 
