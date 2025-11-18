@@ -53,10 +53,33 @@ const eliminarUsuari = async (req, res) => {
   }
 };
 
+// REGISTRE d'usuari
+const registre = async (req, res) => {
+  try {
+    const resultat = await usuariService.registrar(req.body);
+    res.status(201).json(resultat);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+// LOGIN d'usuari
+const login = async (req, res) => {
+  try {
+    const { correu, contrasenya } = req.body;
+    const resultat = await usuariService.login(correu, contrasenya);
+    res.json(resultat);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 module.exports = {
   crearUsuari,
   obtenirUsuaris,
   obtenirUsuari,
   actualitzarUsuari,
-  eliminarUsuari
+  eliminarUsuari,
+  registre,
+  login
 };
