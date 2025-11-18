@@ -54,9 +54,9 @@ const eliminarUsuari = async (req, res) => {
 };
 
 // REGISTRE d'usuari
-const registrar = async (req, res) => {
+const registre = async (req, res) => {
   try {
-    const resultat = await usuariService.registrar(req.body);
+    const resultat = await usuariService.registre(req.body);
     res.status(201).json(resultat);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -80,6 +80,6 @@ module.exports = {
   obtenirUsuari,
   actualitzarUsuari,
   eliminarUsuari,
-  registrar,
+  registre,
   login
 };

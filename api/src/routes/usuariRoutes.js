@@ -8,7 +8,7 @@ router.get('/:id', controller.obtenirUsuari);
 router.put('/:id', controller.actualitzarUsuari);
 router.delete('/:id', controller.eliminarUsuari);
 
-router.post("/registrar", usuariController.registrar);
-router.post("/login", usuariController.login);
+router.post("/registre", controller.registre);
+router.post("/login", controller.login);
 
 module.exports = router;

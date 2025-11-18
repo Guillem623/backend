@@ -38,7 +38,7 @@ const generarToken = (usuari) => {
 };
 
 // Registrar usuari
-const registrar = async (dades) => {
+const registre = async (dades) => {
   const nouUsuari = new Usuari(dades);
   await nouUsuari.save();
 
@@ -68,6 +68,6 @@ module.exports = {
   getUsuariById,
   updateUsuari,
   deleteUsuari,
-  registrar,
+  registre,
   login
 };
