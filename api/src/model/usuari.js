@@ -10,7 +10,8 @@ const usuariSchema = new mongoose.Schema({
     match: [/.+\@.+\..+/, 'El correu no té un format vàlid']
   },
   contrasenya: { type: String, required: true, minlength: 6 },
-  rol: { type: String, enum: ['client', 'admin'], default: 'client' }
+  rol: { type: String, enum: ['client', 'admin'], default: 'client' },
+  refreshToken: { type: String }
 });
 
 usuariSchema.pre("save", async function (next) {

@@ -1,4 +1,4 @@
-const Compra = require("../model/compraModel");
+const Comanda = require("../model/comanda");
 const jwt = require("jsonwebtoken");
 
 let cart = {
@@ -32,21 +32,22 @@ const checkout = async (token) => {
 
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-  const compra = new Compra({
+  const comanda = new Comanda({
 
-    usuari: decoded.id,
-    productes: cart.items,
+    usuariId: decoded.id,
+    items: cart.items,
     total: cart.total
 
   });
 
-  await compra.save();
+  await comanda.save();
 
   const resposta = {
     missatge: "Compra realitzada correctament",
     total: cart.total
   };
 
+  // 🔹 Buidar cistella
   cart.items = [];
   cart.total = 0;
 

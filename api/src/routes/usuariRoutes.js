@@ -11,4 +11,7 @@ router.delete('/:id', controller.eliminarUsuari);
 router.post("/registre", controller.registre);
 router.post("/login", controller.login);
 
+router.post("/refresh", controller.refresh);
+router.post("/logout", controller.logout);
+
 module.exports = router;

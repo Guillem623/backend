@@ -74,6 +74,30 @@ const login = async (req, res) => {
   }
 };
 
+const refresh = async (req, res) => {
+  try {
+    const { refreshToken } = req.body;
+
+    const resultat = await usuariService.refresh(refreshToken);
+
+    res.json(resultat);
+  } catch (error) {
+    res.status(401).json({ error: error.message });
+  }
+};
+
+const logout = async (req, res) => {
+  try {
+    const { refreshToken } = req.body;
+
+    const resultat = await usuariService.logout(refreshToken);
+
+    res.json(resultat);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 module.exports = {
   crearUsuari,
   obtenirUsuaris,
@@ -81,5 +105,7 @@ module.exports = {
   actualitzarUsuari,
   eliminarUsuari,
   registre,
-  login
+  login,
+  refresh,
+  logout
 };
