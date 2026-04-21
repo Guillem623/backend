@@ -1,3 +1,6 @@
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./docs/swagger');
+
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
@@ -18,6 +21,8 @@ app.get('/', (req, res) => res.send('API d’Aliments i Usuaris en marxa'));
 app.use('/api/aliment', alimentRoutes);
 app.use('/api/usuari', usuariRoutes);
 app.use('/api/cart', cartRoutes);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 
 const PORT = process.env.PORT || 3000;
