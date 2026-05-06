@@ -16,7 +16,13 @@ const ComandaSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  data: {
+  estat: {
+    type: String,
+    enum: ['pendent', 'confirmat', 'cancelat'],
+    default: 'pendent'
+  },
+  stripeSessionId: String,
+  createdAt: {
     type: Date,
     default: Date.now
   }

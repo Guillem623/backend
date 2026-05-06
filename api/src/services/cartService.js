@@ -1,4 +1,3 @@
-const Comanda = require("../model/comanda");
 const jwt = require("jsonwebtoken");
 
 let cart = {
@@ -30,21 +29,12 @@ const removeItem = async (index) => {
 
 const checkout = async (token) => {
 
-  const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-  const comanda = new Comanda({
-
-    usuariId: decoded.id,
-    items: cart.items,
-    total: cart.total
-
-  });
-
-  await comanda.save();
-
+  // 🔹 Només buidar el carret sense guardar la comanda
+  // La comanda ja s'ha guardat al controlador confirmarCompra
+  
   const resposta = {
-    missatge: "Compra realitzada correctament",
-    total: cart.total
+    missatge: "Carrito vaciado correctamente",
+    total: 0
   };
 
   // 🔹 Buidar cistella

@@ -11,7 +11,8 @@ const usuariSchema = new mongoose.Schema({
   },
   contrasenya: { type: String, required: true, minlength: 6 },
   rol: { type: String, enum: ['client', 'admin'], default: 'client' },
-  refreshToken: { type: String }
+  refreshToken: { type: String },
+  createdAt: { type: Date, default: Date.now }
 });
 
 usuariSchema.pre("save", async function (next) {

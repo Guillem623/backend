@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/usuariController');
+const authMiddleware = require('../middleware/authMiddleware');
 
 /**
  * @swagger
@@ -89,6 +90,17 @@ router.post("/refresh", controller.refresh);
  *         description: Logout correcte
  */
 router.post("/logout", controller.logout);
+
+/**
+ * @swagger
+ * /api/usuari/compres:
+ *   get:
+ *     summary: Obtenir compres de l'usuari autenticat
+ *     tags: [Usuaris]
+ *     security:
+ *       - BearerAuth: []
+ */
+router.get('/compres', authMiddleware, controller.obtenirCompresUsuari);
 
 /**
  * @swagger

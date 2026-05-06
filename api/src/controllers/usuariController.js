@@ -1,4 +1,6 @@
 const usuariService = require('../services/usuariService');
+const Comanda = require('../model/comanda');
+const jwt = require('jsonwebtoken');
 
 // Crear usuari
 const crearUsuari = async (req, res) => {
@@ -98,6 +100,19 @@ const logout = async (req, res) => {
   }
 };
 
+// 🔹 Obtenir compres de l'usuari actual
+const obtenirCompresUsuari = async (req, res) => {
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    const compres = await Comanda.find({ usuariId: decoded.id });
+    res.json(compres);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   crearUsuari,
   obtenirUsuaris,
@@ -107,5 +122,6 @@ module.exports = {
   registre,
   login,
   refresh,
-  logout
+  logout,
+  obtenirCompresUsuari
 };
