@@ -43,6 +43,7 @@ const crearCheckout = async (req, res) => {
   } catch (error) {
 
     console.error("Error Stripe:", error);
+    req.log.error({ userId: req.user?.id || req.user?.userId || 'unknown', error: error.message }, 'Payment failed');
 
     res.status(500).json({
       error: "Error creant la sessió de pagament"
@@ -73,6 +74,7 @@ const confirmarCompra = async (req, res) => {
     console.log("✅ Sesión de Stripe confirmada:", sessionId);
 
     if (session.payment_status !== "paid") {
+      req.log.error({ orderId: sessionId, userId: decoded.id, error: "El pago no ha sido completado" }, 'Payment failed');
       return res.status(400).json({
         error: "El pago no ha sido completado"
       });
@@ -99,6 +101,7 @@ const confirmarCompra = async (req, res) => {
 
       const comandaGuardada = await comanda.save();
       console.log("✅ Comanda guardada en MongoDB:", comandaGuardada._id);
+      req.log.info({ orderId: comandaGuardada._id, userId: decoded.id, total: comandaGuardada.total }, 'Order created');
 
       // 🔹 Limpiar el carrito después de confirmar la compra
       await cartService.checkout(token);
@@ -115,6 +118,7 @@ const confirmarCompra = async (req, res) => {
   } catch (error) {
 
     console.error("❌ Error al confirmar compra:", error);
+    req.log.error({ orderId: req.body.sessionId, userId: req.user?.id || req.user?.userId || 'unknown', error: error.message }, 'Payment failed');
 
     res.status(500).json({
       error: "Error al confirmar la compra"

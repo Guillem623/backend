@@ -70,8 +70,10 @@ const login = async (req, res) => {
   try {
     const { correu, contrasenya } = req.body;
     const resultat = await usuariService.login(correu, contrasenya);
+    req.log.info({ userId: resultat.usuari._id, email: resultat.usuari.correu }, 'User logged in successfully');
     res.json(resultat);
   } catch (error) {
+    req.log.warn({ email: req.body.correu }, 'Invalid login attempt');
     res.status(400).json({ error: error.message });
   }
 };
@@ -93,7 +95,7 @@ const logout = async (req, res) => {
     const { refreshToken } = req.body;
 
     const resultat = await usuariService.logout(refreshToken);
-
+    req.log.info({ userId: req.user?.id || req.user?.userId || 'unknown' }, 'User logged out');
     res.json(resultat);
   } catch (error) {
     res.status(400).json({ error: error.message });
